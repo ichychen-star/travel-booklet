@@ -303,6 +303,15 @@ ul { margin: 0; padding: 0; list-style: none; }
 .overview-tip { display: grid; grid-template-columns: 29mm 1fr; gap: 3mm; margin-top: 6mm; padding: 3mm; border-top: 1.2mm solid #d79e45; background: #fffdf8; }
 .overview-tip strong { color: #a65c2d; font-size: 16pt !important; }
 .overview-tip span { color: #544e43; font-size: 16pt !important; line-height: 1.25; }
+
+/* Day cards read as one continuous vertical journey. */
+.day-overview-grid { grid-template-columns: 1fr; gap: 2mm; }
+.day-overview-grid:before { display: none; }
+.day-link { grid-template-columns: 31mm 1fr; min-height: 23mm; box-shadow: 1mm 1mm 0 var(--soft); }
+.day-link strong { font-size: 16pt !important; }
+.day-link div { display: grid; align-content: center; gap: .7mm; padding: 2mm 4mm; border-top: 0; border-left: 1.5mm solid var(--accent); }
+.day-link b, .day-link span { color: #1d1d1d !important; font-size: 16pt !important; font-weight: 900; line-height: 1.12; }
+.day-link b { margin: 0; }
 </style>
 </head>
 <body>
@@ -314,14 +323,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   <section class="page overview" id="itinerary-overview">
     <div class="overview-title"><span>2026 SUMMER / TOHOKU</span><h2>行程總覽</h2><p>點選每天的旅程卡，直接跳到當天的時間安排。</p></div>
     <div class="day-overview-grid">
-      <a class="day-link day-link-1" href="#day-1"><strong>DAY 1</strong><div><b>7/25 抵達仙台</b><span>仙台空港 → 市區<br>住宿：Hotel Monterey</span></div></a>
-      <a class="day-link day-link-2" href="#day-2"><strong>DAY 2</strong><div><b>7/26 松島與猊鼻溪</b><span>仙台 → 松島 → 盛岡<br>住宿：盛岡站前</span></div></a>
-      <a class="day-link day-link-3" href="#day-3"><strong>DAY 3</strong><div><b>7/27 農場與弘前城</b><span>盛岡 → 弘前 → 青森<br>住宿：ReLabo</span></div></a>
-      <a class="day-link day-link-4" href="#day-4"><strong>DAY 4</strong><div><b>7/28 八甲田與奧入瀨</b><span>青森 → 奧入瀨<br>住宿：十和田湖畔</span></div></a>
-      <a class="day-link day-link-5" href="#day-5"><strong>DAY 5</strong><div><b>7/29 十和田湖與銀山</b><span>奧入瀨 → 銀山溫泉<br>住宿：能登屋旅館</span></div></a>
-      <a class="day-link day-link-6" href="#day-6"><strong>DAY 6</strong><div><b>7/30 銀山慢活</b><span>銀山溫泉 → 藏王<br>住宿：藏王溫泉 季の里</span></div></a>
-      <a class="day-link day-link-7" href="#day-7"><strong>DAY 7</strong><div><b>7/31 御釜與狐狸村</b><span>藏王 → 仙台<br>住宿：仙台站東口</span></div></a>
-      <a class="day-link day-link-8" href="#day-8"><strong>DAY 8</strong><div><b>8/1 仙台採買返台</b><span>仙台 → 仙台機場<br>回到台灣</span></div></a>
+      <a class="day-link day-link-1" href="#day-1"><strong>DAY 1</strong><div><b>7/25 抵達仙台 · Hotel Monterey</b><span>仙台空港 → 市區</span></div></a>
+      <a class="day-link day-link-2" href="#day-2"><strong>DAY 2</strong><div><b>7/26 松島、猊鼻溪 · 盛岡站前</b><span>仙台 → 松島 → 猊鼻溪 → 盛岡</span></div></a>
+      <a class="day-link day-link-3" href="#day-3"><strong>DAY 3</strong><div><b>7/27 農場、弘前城 · ReLabo</b><span>盛岡 → 小岩井 → 弘前 → 青森</span></div></a>
+      <a class="day-link day-link-4" href="#day-4"><strong>DAY 4</strong><div><b>7/28 八甲田、奧入瀨 · 十和田湖畔</b><span>青森 → 八甲田 → 奧入瀨</span></div></a>
+      <a class="day-link day-link-5" href="#day-5"><strong>DAY 5</strong><div><b>7/29 十和田湖、銀山 · 能登屋</b><span>奧入瀨 → 十和田湖 → 銀山溫泉</span></div></a>
+      <a class="day-link day-link-6" href="#day-6"><strong>DAY 6</strong><div><b>7/30 銀山慢活 · 藏王溫泉</b><span>銀山溫泉 → 藏王</span></div></a>
+      <a class="day-link day-link-7" href="#day-7"><strong>DAY 7</strong><div><b>7/31 御釜、狐狸村 · 仙台站東口</b><span>藏王 → 狐狸村 → 仙台</span></div></a>
+      <a class="day-link day-link-8" href="#day-8"><strong>DAY 8</strong><div><b>8/1 仙台採買返台</b><span>仙台 → 仙台機場 → 台灣</span></div></a>
     </div>
     <div class="overview-tip"><strong>交通提醒</strong><span>Day 5 車程最長約 5 小時；請把休息、加油與下車伸展時間一起算進去。</span></div>
     <footer class="page-number">2</footer>
