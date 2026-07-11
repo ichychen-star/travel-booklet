@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>202607 日本東北旅遊手冊</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #d8d8d8; color: #1f1f1f; font-family: "Microsoft JhengHei", "Noto Sans TC", Arial, sans-serif; }
+.booklet { display: grid; justify-content: center; gap: 16px; padding: 16px; }
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: #fff; break-after: page; box-shadow: 0 3px 16px rgba(0,0,0,.18); }
+.page-number { position: absolute; right: 13mm; bottom: 8mm; font-size: 9pt; color: #777; }
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover-mark { position: absolute; left: 16mm; bottom: 15mm; color: #4f3825; background: rgba(255, 249, 235, .78); border: .6mm solid rgba(126, 92, 55, .25); border-radius: 4mm; padding: 5mm 8mm; }
+.cover-mark h1 { margin: 0 0 2mm; font-size: 26pt; letter-spacing: 0; }
+.cover-mark p { margin: 0; font-size: 14pt; font-weight: 700; }
+.hero { position: relative; height: 124mm; overflow: hidden; background: #e9f4f7; }
+.hero.small { height: 110mm; }
+.hero.day { height: 128mm; }
+.scene { width: 100%; height: 100%; position: relative; overflow: hidden; background: linear-gradient(#bfe4ff 0 42%, #f7f1d5 42% 56%, #6ab889 56%); }
+.scene:before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 18% 22%, rgba(255,255,255,.95) 0 9%, transparent 10%), radial-gradient(circle at 33% 19%, rgba(255,255,255,.8) 0 7%, transparent 8%), radial-gradient(circle at 73% 18%, rgba(255,255,255,.85) 0 8%, transparent 9%); }
+.scene:after { content: ""; position: absolute; left: -8%; right: -8%; bottom: 0; height: 38%; background: linear-gradient(135deg, rgba(65,126,77,.88), rgba(143,180,93,.78)); clip-path: polygon(0 45%, 10% 25%, 22% 50%, 33% 20%, 48% 54%, 60% 18%, 75% 48%, 88% 20%, 100% 44%, 100% 100%, 0 100%); }
+.scene.water { background: linear-gradient(#cbe8ff 0 45%, #68b9cf 45% 65%, #7fb05c 65%); }
+.scene.water:after { height: 28%; background: #6aa36f; clip-path: polygon(0 35%, 25% 15%, 45% 42%, 70% 10%, 100% 33%, 100% 100%, 0 100%); }
+.scene.onsen { background: linear-gradient(#d7ecff 0 40%, #dfedf4 40% 55%, #6a8f76 55%); }
+.scene.onsen:after { height: 45%; background: linear-gradient(135deg, #6e4f42, #b57f61 55%, #4c724f); clip-path: polygon(0 70%, 14% 44%, 28% 62%, 40% 30%, 55% 68%, 68% 26%, 82% 58%, 100% 40%, 100% 100%, 0 100%); }
+.scene.castle { background: linear-gradient(#cde8ff 0 52%, #b9d7c5 52%); }
+.scene.castle .castle-shape { position: absolute; right: 20mm; bottom: 16mm; width: 58mm; height: 58mm; background: linear-gradient(#f8f6ec, #d8d4c8); clip-path: polygon(10% 100%, 10% 46%, 28% 46%, 28% 24%, 50% 3%, 72% 24%, 72% 46%, 90% 46%, 90% 100%); border-bottom: 6mm solid #4d5b61; z-index: 2; }
+.scene .label { position: absolute; z-index: 3; left: 12mm; bottom: 14mm; padding: 3mm 6mm; background: rgba(255,255,255,.82); border-radius: 4mm; font-size: 21pt; font-weight: 800; }
+.bar { height: 6mm; width: 100%; }
+.orange { background: #c7524a; }
+.blue { background: #5b9bd5; }
+.badge { position: absolute; left: 9mm; top: 86mm; margin: 0; padding: 4mm 18mm; border-radius: 4mm; background: rgba(255,255,255,.82); font-size: 24pt; font-weight: 800; }
+.outline-list { list-style: none; padding: 0; margin: 12mm 14mm 0; font-size: 17.7pt; line-height: 1.55; font-weight: 800; }
+.overview { background: #fcf9f2; padding: 16mm 15mm; }
+.overview h2, .map-page h2 { margin: 0 0 8mm; font-size: 30pt; }
+.route-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; font-size: 16pt; line-height: 1.4; }
+.route-card { border-left: 3mm solid #5b9bd5; padding: 3mm 4mm; background: rgba(255,255,255,.72); }
+.map-art { position: absolute; left: 13mm; right: 13mm; bottom: 20mm; height: 154mm; border: .7mm solid #7aa8b8; border-radius: 4mm; background: linear-gradient(145deg, #e7f4ef, #f8fbff 50%, #d8edf8); overflow: hidden; }
+.map-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map-art .route { fill: none; stroke: #c7524a; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 15 12; }
+.map-art .land { fill: rgba(135,178,116,.55); stroke: rgba(65,126,77,.45); stroke-width: 2; }
+.map-point { position: absolute; z-index: 2; transform: translate(-50%, -50%); padding: 2mm 4mm; border-radius: 999px; background: #fffdf7; border: .7mm solid #5b9bd5; font-size: 12.5pt; font-weight: 800; white-space: nowrap; }
+.p-sendai { left: 56%; top: 74%; } .p-matsushima { left: 65%; top: 69%; } .p-geibikei { left: 50%; top: 58%; } .p-morioka { left: 42%; top: 48%; } .p-koiwai { left: 38%; top: 42%; } .p-hirosaki { left: 33%; top: 24%; } .p-aomori { left: 45%; top: 18%; } .p-oirase { left: 55%; top: 30%; } .p-ginzan { left: 51%; top: 84%; } .p-zao { left: 64%; top: 88%; }
+.image-map { padding: 0; background: #fff; }
+.route-map-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+.image-map .page-number { display: none; }
+.prep .badge { top: 80mm; }
+.info-grid { position: absolute; left: 5mm; right: 5mm; display: grid; grid-template-columns: 18mm 1fr 1fr; border: .45mm solid #236272; }
+.checklist-block { top: 116mm; min-height: 83mm; }
+.flight-block { top: 204mm; min-height: 69mm; }
+.vertical-label { display: grid; place-items: center; background: #236272; color: #fff; writing-mode: vertical-rl; letter-spacing: .22em; font-size: 18pt; font-weight: 800; }
+.checklists { grid-column: 2 / 4; display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; padding: 4mm 5mm; font-size: 12.3pt; line-height: 1.18; }
+ul { margin: 0; padding: 0; list-style: none; }
+.flight-card { padding: 6mm; border-left: .35mm solid #236272; font-size: 14.8pt; line-height: 1.45; }
+.day-page { background: #f6f7f4; padding: 0 13mm 13mm; }
+.day-page .hero.day { margin: 0 -13mm; border-bottom: 1.5mm solid #d9dfd3; }
+.day-page .scene { background-size: cover; background-position: center; }
+.day-page .scene:before, .day-page .scene:after { display: none; }
+.day-page:nth-of-type(5) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1400"); }
+.day-page:nth-of-type(7) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/211030_Kameshima_Matsushima_Miyagi_pref_Japan01n.jpg?width=1400"); }
+.day-page:nth-of-type(9) .scene { background-image: url("tohoku-brochure-assets/hirosaki-castle-summer.png"); }
+.day-page:nth-of-type(11) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Oirase_keiryuu.JPG?width=1400"); }
+.day-page:nth-of-type(13) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89_Ginzan_Onsen_%287809473788%29.jpg?width=1400"); }
+.day-page:nth-of-type(15) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/220430%20ZaoOnsen%20Yamagata%20Yamagata%20pref%20Japan02s3.jpg?width=1400"); }
+.day-page:nth-of-type(17) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Okama%20crater%20lake%2C%20Mt.%20Zao%2C%20Tohoku%20region%2C%20Japan%20%28north%20facing%20view%29.jpg?width=1400"); }
+.day-page:nth-of-type(19) .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1400"); }
+.day-page .castle-shape { display: none; }
+.day-page .scene .label { display: none; }
+.day-page .bar { display: none; }
+.day-heading { display: grid; grid-template-columns: 35mm 1fr; align-items: end; gap: 5mm; margin: 7mm 0 4mm; padding-bottom: 3mm; border-bottom: .45mm solid #333; }
+.day-badge { width: auto; height: auto; border-radius: 0; display: block; background: transparent; color: #1d1d1d; line-height: 1.05; border-left: 2mm solid #2c817b; padding-left: 3mm; }
+.day-badge strong { display: block; font-size: 17pt; } .day-badge span { display: block; margin-top: 1mm; font-size: 9.5pt; font-weight: 800; color: #666; }
+.day-heading h2 { margin: 0; font-size: 20pt; font-weight: 900; line-height: 1.15; }
+.schedule { width: 100%; margin: 0; border-collapse: separate; border-spacing: 0; font-size: 13.1pt; line-height: 1.26; }
+.schedule tbody { display: grid; grid-template-columns: 1fr; gap: 1.5mm; }
+.schedule tr { position: relative; display: grid; grid-template-columns: 27mm 1fr; min-height: 11.7mm; padding: 1.5mm 0 1.5mm 5mm; border-left: .45mm solid #9a9a9a; }
+.schedule tr:before { content: ""; position: absolute; left: -1.35mm; top: 5.2mm; width: 2.3mm; height: 2.3mm; border-radius: 50%; background: #2c817b; border: .6mm solid #fff; box-shadow: 0 0 0 .25mm #2c817b; }
+.schedule th { width: auto; padding: 0 2mm 0 0; text-align: left; vertical-align: top; border-right: 0; font-size: 13pt; color: #444; }
+.schedule td { padding: 0; vertical-align: top; font-weight: 700; }
+.drive-time { display: block; margin-top: .8mm; color: #80633b; font-size: 10.5pt; font-weight: 800; line-height: 1.25; }
+.route-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 3mm; }
+.route-guide div { padding: 2.6mm 3mm; border-top: 1mm solid #dca54a; background: #fffdf8; font-size: 10.7pt; line-height: 1.32; }
+.route-guide strong { color: #9a5725; }
+.shopping-page { padding: 11mm 13mm; background: #fbf7ed; }
+.shopping-page h2 { margin: 0; font-size: 24pt; line-height: 1.1; color: #3d4d56; }
+.shopping-page .sub { margin: 2mm 0 5mm; font-size: 11.5pt; font-weight: 700; color: #775e40; }
+.shop-map { position: relative; padding: 5mm; border: .7mm dashed #bd9c64; background: #fffdf8; }
+.map-station { padding: 4mm; text-align: center; background: #4d9a9b; color: #fff; font-size: 16pt; font-weight: 900; }
+.map-station small { display: block; margin-top: 1mm; font-size: 10pt; }
+.map-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; margin: 5mm 4mm 0; position: relative; }
+.map-branches:before { content: ""; position: absolute; top: -5mm; left: 50%; height: 5mm; border-left: 1mm dashed #d06b5d; }
+.shop-node { position: relative; min-height: 49mm; padding: 4mm; border: .5mm solid #7f9290; background: #fff; font-size: 11pt; line-height: 1.34; }
+.shop-node:before { content: ""; position: absolute; top: -5mm; left: 50%; height: 5mm; border-left: 1mm dashed #d06b5d; }
+.shop-node h3 { margin: 0 0 2mm; font-size: 14pt; color: #b14f44; }
+.shop-node strong { color: #2c7779; }
+.walk-line { margin: 5mm auto; width: 1mm; height: 10mm; border-left: 1mm dashed #d06b5d; }
+.mitsukoshi { margin: 0 18mm; min-height: 45mm; border-color: #ad8069; }
+.map-tip { margin-top: 4mm; padding: 3.5mm 4mm; background: #f2e7d4; border-left: 2mm solid #d99a4b; font-size: 11pt; line-height: 1.35; }
+.shopping-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 5mm; }
+.shopping-footer div { padding: 3mm; background: #fff; border-top: 1mm solid #4d9a9b; font-size: 10.8pt; line-height: 1.35; }.buy-page { padding: 12mm 13mm; background: #f8f5ed; }
+.buy-page h2 { margin: 0; padding-left: 4mm; border-left: 2mm solid #c56a4e; color: #394b54; font-size: 25pt; }
+.buy-page .lead { margin: 3mm 0 5mm; color: #6d5a42; font-size: 11.5pt; font-weight: 700; }
+.buy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+.buy-card { min-height: 53mm; padding: 4mm; border: .45mm solid #cfc5b3; background: #fff; }
+.buy-card h3 { margin: 0 0 1.5mm; color: #ae5546; font-size: 15pt; line-height: 1.1; }
+.buy-card p { margin: 0; font-size: 10.8pt; line-height: 1.35; }
+.buy-tag { display: inline-block; margin: 2mm 0; padding: 1mm 2.5mm; background: #e8f0e7; color: #356b61; font-size: 9.5pt; font-weight: 900; }
+.buy-tag.cold { background: #e7f1f5; color: #35677a; }
+.buy-tag.stop { background: #f8e4dc; color: #a84d40; }
+.buy-route { margin-top: 5mm; padding: 4mm; border-top: 1.2mm solid #4d9a9b; background: #fffdf8; font-size: 11pt; line-height: 1.4; }
+.buy-route strong { color: #2c7779; }
+.buy-warning { margin-top: 4mm; padding: 3mm 4mm; background: #f7e6d7; border-left: 2mm solid #c56a4e; font-size: 10.5pt; line-height: 1.35; }.flat-map { position: relative; height: 210mm; overflow: hidden; border: .7mm solid #78959a; background-color: #eef5ef; background-image: linear-gradient(#d5e6de 1px, transparent 1px), linear-gradient(90deg, #d5e6de 1px, transparent 1px); background-size: 10mm 10mm; }
+.flat-map:before { content: "N ↑"; position: absolute; top: 4mm; right: 5mm; color: #355f65; font-size: 12pt; font-weight: 900; }
+.map-title-strip { position: absolute; z-index: 4; top: 5mm; left: 5mm; padding: 2mm 4mm; background: #fffdf8; border-left: 2mm solid #c65d50; font-size: 10.5pt; font-weight: 900; }
+.map-road { position: absolute; z-index: 1; background: rgba(255,255,255,.9); box-shadow: inset 0 0 0 .35mm #cbd8d3; }
+.map-road.main { left: 0; right: 0; top: 94mm; height: 17mm; }
+.map-road.west { left: 17mm; top: 20mm; bottom: 0; width: 13mm; transform: rotate(8deg); }
+.map-road.east { right: 18mm; top: 24mm; bottom: -8mm; width: 15mm; transform: rotate(-4deg); }
+.map-road.mall { left: 8mm; top: 145mm; width: 91mm; height: 10mm; transform: rotate(-15deg); }
+.map-rail { position: absolute; z-index: 2; left: 29mm; right: 21mm; top: 84mm; height: 5mm; background: repeating-linear-gradient(90deg, #4d6065 0 4mm, #d6dede 4mm 7mm); border-top: .6mm solid #273f44; border-bottom: .6mm solid #273f44; }
+.plan-place { position: absolute; z-index: 3; padding: 3mm; border: .5mm solid #587a7d; background: #fffdf8; box-shadow: 1.2mm 1.2mm 0 rgba(70,100,103,.16); font-size: 10.1pt; line-height: 1.28; }
+.plan-place strong { display: block; margin-bottom: 1mm; font-size: 12pt; color: #284f55; }
+.plan-place small { display: block; color: #74583e; font-size: 9.2pt; font-weight: 800; }
+.plan-place.hotel { right: 8mm; top: 111mm; width: 56mm; border-color: #b37652; }
+.plan-place.station { left: 48mm; top: 89mm; width: 76mm; padding: 4mm; text-align: center; border: 1mm solid #317f82; background: #e5f2ed; }
+.plan-place.station strong { color: #176a6e; font-size: 14pt; }
+.plan-place.yodobashi { right: 7mm; top: 51mm; width: 58mm; border-color: #537aa6; }
+.plan-place.parco { left: 8mm; top: 41mm; width: 59mm; border-color: #c36868; }
+.plan-place.mitsukoshi { left: 9mm; bottom: 12mm; width: 65mm; border-color: #a36d62; }
+.plan-place.spal { left: 49mm; top: 117mm; width: 54mm; border-color: #4d9a9b; }
+.map-note { position: absolute; z-index: 4; right: 7mm; bottom: 12mm; width: 73mm; padding: 3mm; background: rgba(255,253,248,.96); border-top: 1mm solid #d7974a; font-size: 9.6pt; line-height: 1.3; }
+.map-route { position: absolute; z-index: 2; border: 1.1mm dashed #d55c59; border-left: 0; border-bottom: 0; pointer-events: none; }
+.route-a { left: 62mm; top: 73mm; width: 70mm; height: 44mm; border-radius: 0 18mm 0 0; }
+.route-b { left: 23mm; top: 62mm; width: 45mm; height: 45mm; border-radius: 18mm 0 0 0; border-right: 0; border-left: 1.1mm dashed #d55c59; }
+.route-c { left: 23mm; top: 128mm; width: 54mm; height: 42mm; border-radius: 0 0 0 18mm; border-right: 0; border-top: 0; border-bottom: 1.1mm dashed #d55c59; border-left: 1.1mm dashed #d55c59; }
+.map-legend { margin-top: 4mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.map-legend div { padding: 2.4mm 3mm; background: #fff; border-left: 1.5mm solid #d55c59; font-size: 10.1pt; line-height: 1.3; }.day7-access { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3.5mm 0 4mm; }
+.day7-access div { padding: 3mm; border-top: 1mm solid #dca54a; background: #fffdf8; font-size: 10.8pt; line-height: 1.34; }
+.day7-access strong { color: #9a5725; }.spot-page { padding: 10mm 12mm; background: #fbfaf5; }
+.spot-heading { margin-bottom: 5mm; padding-bottom: 3mm; border-bottom: .6mm solid #668c89; }
+.spot-heading span { display: block; margin-bottom: 1mm; color: #a45847; font-size: 10pt; font-weight: 900; }
+.spot-heading h2 { margin: 0; color: #2f4f54; font-size: 22pt; line-height: 1.12; }
+.spot-list { display: grid; gap: 5mm; }
+.spot-entry { display: grid; grid-template-columns: 66mm 1fr; min-height: 91mm; overflow: hidden; border: .45mm solid #c9d4cf; background: #fff; }
+.spot-entry img { width: 66mm; height: 91mm; object-fit: cover; display: block; }
+.spot-entry > div { padding: 4mm 4mm 3mm; }
+.spot-entry h3 { margin: 0 0 2mm; color: #ad5147; font-size: 15.5pt; line-height: 1.14; }
+.spot-entry p { margin: 0 0 2.4mm; font-size: 11.1pt; line-height: 1.38; }
+.spot-entry .spot-route { margin-bottom: 0; padding-top: 2mm; border-top: .35mm solid #d9e3de; color: #425d5c; font-size: 10.3pt; }
+.spot-entry .spot-route strong { color: #2c817b; }
+.spot-single .spot-entry { min-height: 158mm; grid-template-columns: 92mm 1fr; }
+.spot-single .spot-entry img { width: 92mm; height: 158mm; }
+.spot-single .spot-entry > div { padding: 7mm 6mm; }
+.spot-single .spot-entry h3 { font-size: 20pt; }
+.spot-single .spot-entry p { font-size: 13pt; line-height: 1.46; }
+.day-page.day-1 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1400"); }
+.day-page.day-2 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/211030_Kameshima_Matsushima_Miyagi_pref_Japan01n.jpg?width=1400"); }
+.day-page.day-3 .scene { background-image: url("tohoku-brochure-assets/hirosaki-castle-summer.png"); }
+.day-page.day-4 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Oirase_keiryuu.JPG?width=1400"); }
+.day-page.day-5 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89_Ginzan_Onsen_%287809473788%29.jpg?width=1400"); }
+.day-page.day-6 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/220430%20ZaoOnsen%20Yamagata%20Yamagata%20pref%20Japan02s3.jpg?width=1400"); }
+.day-page.day-7 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Okama%20crater%20lake%2C%20Mt.%20Zao%2C%20Tohoku%20region%2C%20Japan%20%28north%20facing%20view%29.jpg?width=1400"); }
+.day-page.day-8 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1400"); }.meta-note { position: absolute; left: 13mm; right: 13mm; bottom: 11mm; display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; font-size: 12.3pt; line-height: 1.25; color: #174f70; font-weight: 800; }
+.meta-note span { background: #fff; border: .35mm solid #cbd6d5; border-left: 2mm solid #2c817b; padding: 2.7mm; }
+.intro { padding: 11mm 14mm; background: #fbfbf8; }
+.intro .image-panel { height: 72mm; border-radius: 0; overflow: hidden; margin: 0 0 5mm; position: relative; border-bottom: 1.2mm solid #2c817b; }
+.intro .image-panel img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.photo-label { display: none; }
+.intro h2 { margin: 0 0 1.2mm; padding-left: 4mm; border-left: 1.4mm solid #2c817b; font-size: 21pt; line-height: 1.08; }
+.intro h3 { margin: 0 0 3mm; padding-left: 5.4mm; color: #555; font-size: 12.5pt; line-height: 1.25; letter-spacing: 0; }
+.intro p { margin: 0 0 2.6mm; font-size: 12.8pt; line-height: 1.38; }
+.intro p strong { color: #b65049; }
+.intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 4mm; }
+.tip { position: relative; padding: 3mm; background: #fff; border: .45mm dashed #d15f58; font-size: 11.5pt; line-height: 1.3; }
+.tip:before { content: ""; position: absolute; left: -2.2mm; top: 4mm; width: 3.2mm; height: 3.2mm; background: #d15f58; }
+.hotel-table { width: 100%; border-collapse: collapse; margin-top: 6mm; font-size: 13pt; }
+.hotel-table th { background: #236272; color: #fff; padding: 2.5mm; text-align: left; }
+.hotel-table td { border: .3mm solid #82a7b0; padding: 2.5mm; vertical-align: top; }
+/* Page 4: travel checklist layout inspired by the supplied reference. */
+.prep { background: #fffdf8; }
+.prep .hero.small { height: 78mm; }
+.prep .scene { background: url("tohoku-brochure-assets/prep-style-reference.png") center top / cover no-repeat; }
+.prep .scene:before, .prep .scene:after, .prep .scene .label { display: none; }
+.prep .bar { height: 4.5mm; background: #c95b54; }
+.prep .badge { top: 59mm; left: 14mm; padding: 3mm 8mm; border: .4mm solid rgba(255,255,255,.75); border-radius: 0; background: rgba(255,255,255,.88); color: #172d31; font-size: 22pt; letter-spacing: .08em; }
+.prep .info-grid { left: 8mm; right: 8mm; grid-template-columns: 17mm 1fr 1fr; border: .45mm solid #3c747b; background: #fff; }
+.prep .checklist-block { top: 89mm; min-height: 112mm; }
+.prep .flight-block { top: 207mm; min-height: 70mm; }
+.prep .vertical-label { background: #22656d; font-size: 15pt; line-height: 1.45; letter-spacing: .16em; }
+.prep .checklists { gap: 0; padding: 4mm 4.5mm; font-size: 12.1pt; line-height: 1.18; }
+.prep .checklists ul + ul { padding-left: 4mm; border-left: .35mm solid #6d9b9e; }
+.prep .checklists li { margin: 0 0 .65mm; }
+.prep .checklists li::first-letter { color: #d84c4b; }
+.prep .flight-card { padding: 4.5mm; border-left: .35mm solid #6d9b9e; font-size: 12.1pt; line-height: 1.38; }
+.prep .flight-card strong { display: inline-block; margin-bottom: 1mm; padding: .7mm 1.6mm; background: #f3db4a; color: #242424; font-size: 13pt; }/* Page 4 refinement: larger supplied packing photo and more legible details. */
+.prep .hero.small { height: 93mm; }
+.prep .scene { background-image: url("tohoku-brochure-assets/prep-packing-summer.png"); background-position: center center; }
+.prep .badge { top: 73mm; left: 14mm; font-size: 23pt; padding: 3.3mm 8mm; }
+.prep .checklist-block { top: 104mm; min-height: 101mm; }
+.prep .flight-block { top: 211mm; min-height: 66mm; }
+.prep .checklists { padding: 3.8mm 4.5mm; font-size: 13.1pt; line-height: 1.11; }
+.prep .checklists li { margin-bottom: .48mm; }
+.prep .flight-card { padding: 4mm; font-size: 12.7pt; line-height: 1.34; }
+.prep .flight-card strong { font-size: 13.5pt; }/* Page 4 final readability pass. */
+.prep .checklists { font-size: 14.1pt; line-height: 1.12; font-weight: 800; }
+.prep .checklists li { margin-bottom: .4mm; }
+.prep .checklists li::first-letter { color: #d73d43; font-size: 1.28em; font-weight: 900; }
+.prep .flight-card { font-size: 14pt; line-height: 1.34; font-weight: 800; }
+.prep .flight-card strong { font-size: 15.5pt; font-weight: 900; }/* Page 4 denser final composition. */
+.prep .hero.small { height: 100mm; }
+.prep .badge { top: 80mm; }
+.prep .checklist-block { top: 111mm; min-height: 96mm; }
+.prep .flight-block { top: 212mm; min-height: 70mm; }
+.prep .checklists { align-items: stretch; }
+.prep .checklists ul { display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+.prep .checklists li { margin-bottom: 0; }
+.prep .flight-card { display: flex; flex-direction: column; justify-content: space-evenly; }/* Page 4 larger print type. */
+.prep .checklists { font-size: 14.9pt; line-height: 1.1; }
+.prep .checklists li::first-letter { font-size: 1.32em; }
+.prep .flight-card { font-size: 14.8pt; line-height: 1.3; }
+.prep .flight-card strong { font-size: 16.2pt; }/* Page 4 requested 16pt body type. */
+.prep .checklists { font-size: 16pt; line-height: 1.06; }
+.prep .checklists li::first-letter { font-size: 1.25em; }
+.prep .flight-card { font-size: 16pt; line-height: 1.24; }
+.prep .flight-card strong { font-size: 17.5pt; }/* Whole booklet: 16pt minimum readable type. */
+.page :is(p, li, td, th, span, small, footer, .route-guide div, .map-note, .map-title-strip, .plan-place, .map-legend div, .shopping-footer div, .buy-card, .buy-route, .buy-warning, .vertical-label, .flight-card, .checklists, .tip, .day7-access div, .drive-time, .spot-entry h3, .spot-entry p, .route-card, .map-point, .overview [style]) { font-size: 16pt !important; }
+.cover-mark p { font-size: 16pt !important; }
+.cover, .image-map { border: 2pt solid #29474b; }
+.day-page .hero.day { height: 68mm; }
+.day-page .day-heading { margin-top: 5mm; margin-bottom: 3mm; }
+.day-page .schedule { font-size: 16pt; line-height: 1.18; }
+.day-page .schedule th { font-size: 16pt; }
+.day-page .schedule tr { min-height: 11mm; }
+.day-page .route-guide { display: none; }
+.day-page .meta-note { bottom: 14mm; font-size: 16pt; }
+.day-page .meta-note span { padding: 2.2mm; }
+.day-page .page-number { left: 13mm; right: auto; bottom: 3mm; }
+.spot-entry { min-height: 95mm; }
+.spot-entry img { height: 95mm; }
+.spot-entry > div { padding: 3.5mm; }
+.spot-entry .spot-route { padding-top: 1.5mm; }
+.spot-single .spot-entry { min-height: 162mm; }
+.spot-single .spot-entry img { height: 162mm; }/* Preserve the 16pt minimum for emphasized labels and compact the shopping map. */
+.page strong { font-size: 16pt !important; }
+.shopping-page .flat-map { height: 190mm; }
+.shopping-page .plan-place { padding: 2mm; line-height: 1.16; }
+.shopping-page .plan-place strong { margin-bottom: .5mm; }
+.shopping-page .map-note { padding: 2mm; line-height: 1.18; }
+.shopping-page .map-legend { margin-top: 3mm; }
+.shopping-page .map-legend div { padding: 2mm; line-height: 1.16; }
+.day-badge strong { font-size: 17pt !important; }
+.spot-entry h3 { font-size: 18pt !important; }/* Exception: driving-time notes stay compact but readable. */
+.day-page .schedule tbody { gap: 3mm; }
+.day-page .schedule tr { min-height: 13.5mm; padding: 2.2mm 0 2.2mm 5mm; }
+.day-page .schedule tr:before { top: 5.8mm; }
+.day-page .hero.day { height: 115mm; }/* Daily heading hierarchy: bold labels larger, date secondary. */
+.page.day-page .day-badge strong { font-size: 20pt !important; }
+.page.day-page .day-heading h2 { font-size: 22pt !important; }
+.page.day-page .day-badge span { font-size: 12pt !important; color: #777; line-height: 1.05; }/* Centered 95% artwork on pages 1 and 3. */
+.cover, .image-map { display: grid; place-items: center; background: #fff; }
+.cover img, .route-map-image { width: 95%; height: 95%; margin: 0; object-fit: contain; }/* Remove the outer border on pages 1 and 3. */
+.cover, .image-map { border: 0; }/* Day 2: brighter summer Matsushima bay hero photo. */
+.day-page.day-2 .scene { background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/%E5%A4%8F%E3%81%AE%E6%9D%BE%E5%B3%B6%20%28The%20view%20of%20Matsushima%29%2008%20Aug%2C%202010%20-%20panoramio.jpg?width=1600"); background-position: center; }/* Day 2 uses the user-supplied Matsushima aerial photo. */
+.day-page.day-2 .scene { background-image: url("tohoku-brochure-assets/matsushima-aerial.png"); background-position: center; }.page.day-page.day-6 .scene { background-image: url("tohoku-brochure-assets/zao-onsen-night.png"); background-position: center; }`r`n`r`n@media print { body { background: #fff; } .booklet { display: block; padding: 0; gap: 0; } .page { box-shadow: none; } }
+</style>
+</head>
+<body>
+<main class="booklet">
+  <section class="page cover">
+    <img src="tohoku-brochure-assets/cover.png" alt="日本東北行封面" />
+  </section>
+
+  <section class="page overview">
+    <h2>行程總覽</h2>
+    <div class="route-grid">
+      <div class="route-card"><strong>D1-D2：宮城與岩手南部</strong><br>仙台、松島、猊鼻溪、盛岡，從海景遊船進入溪谷舟遊。</div>
+      <div class="route-card"><strong>D3-D4：岩手、弘前、青森</strong><br>小岩井農場、弘前城、睡魔之家與八甲田森林景觀。</div>
+      <div class="route-card"><strong>D4-D5：十和田與奧入瀨</strong><br>入住十和田湖畔，安排溪流散步與湖上遊覽船。</div>
+      <div class="route-card"><strong>D5-D8：山形、藏王、仙台</strong><br>銀山溫泉、藏王御釜、狐狸村，最後回仙台採買。</div>
+    </div>
+    <table class="hotel-table"><thead><tr><th>日期</th><th>路線</th><th>住宿</th></tr></thead><tbody>
+      <tr><td>7/25</td><td>抵達仙台</td><td>Hotel Monterey Sendai</td></tr>
+      <tr><td>7/26</td><td>仙台, 松島, 猊鼻溪, 盛岡</td><td>盛岡站前里士滿酒店</td></tr>
+      <tr><td>7/27</td><td>盛岡, 小岩井農場, 弘前, 青森</td><td>ReLabo Medical Spa & Stay</td></tr>
+      <tr><td>7/28</td><td>青森, 八甲田, 奧入瀨</td><td>十和田湖畔櫻樂</td></tr>
+      <tr><td>7/29</td><td>奧入瀨, 十和田湖, 銀山溫泉</td><td>能登屋旅館</td></tr>
+      <tr><td>7/30</td><td>銀山溫泉慢活, 藏王附近</td><td>藏王溫泉 季の里</td></tr>
+      <tr><td>7/31</td><td>藏王, 狐狸村, 仙台</td><td>Hotel Metropolitan Sendai East</td></tr>
+      <tr><td>8/1</td><td>仙台, 機場, 台北</td><td>回台灣</td></tr>
+    </tbody></table>
+    <div style="margin-top:7mm;font-size:13.6pt;line-height:1.45;"><strong>交通提醒：</strong>行程以自駕移動為主，其中 Day 5 車程約 5 小時，建議提前規劃休息、加油與下車伸展時間。原試算表「汽車」分頁含北海道租還車店鋪資訊，與本次東北路線不一致，未放入正式版面。</div>
+    <footer class="page-number">2</footer>
+  </section>
+
+  <section class="page overview map-page image-map">
+    <img class="route-map-image" src="tohoku-brochure-assets/tohoku-route-map.png" alt="日本東北 8 天 7 夜可愛旅行地圖">
+    <footer class="page-number">3</footer>
+  </section>
+
+  <section class="page prep">
+    <div class="hero small"><div class="scene"><span class="label">行前資訊</span></div></div><div class="bar orange"></div><h2 class="badge">行前資訊</h2>
+    <div class="info-grid checklist-block"><div class="vertical-label">準備清單</div><div class="checklists">
+      <ul><li>□護照</li><li>□中華電信漫遊</li><li>□日文駕照譯本</li><li>□台灣駕照</li><li>□藥品<br>（溫度計、退燒藥、胃腸藥、益生菌、OK蹦、暈車藥）</li><li>□現金、信用卡、PP卡</li><li>□行動電源</li><li>□充電器</li><li>□隱形眼鏡、藥水</li></ul>
+      <ul><li>□雨傘、便利雨衣</li><li>□衛生紙、濕紙巾</li><li>□臭衣服托運袋</li><li>□塑膠袋</li><li>□洗面乳、化妝品、保養品</li><li>□電扇</li><li>□自拍棒</li><li>□防曬<br>（太陽眼鏡、帽子、蘆薈、防曬乳）</li><li>□小孩保險</li><li>□吹風機</li></ul>
+    </div></div></div>
+    <div class="info-grid flight-block"><div class="vertical-label">航班資訊</div>
+      <div class="flight-card"><strong>去程 JX862</strong><br>日期 2026/07/25<br>台北桃園一航 → SENDAI<br>起飛 11:35 / 抵達 16:00</div>
+      <div class="flight-card"><strong>回程 JX863</strong><br>日期 2026/08/01<br>SENDAI → 台北桃園一航<br>起飛 17:20 / 抵達 20:10</div>
+    </div>
+    <footer class="page-number">4</footer>
+  </section>
+
+  <section class="page day-page day-1"><div class="hero day"><div class="scene water"><span class="label">仙台</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 1</strong><span>(7/25) Sat</span></div><h2>抵達仙台 / 牛舌晚餐</h2></div><table class="schedule"><tbody><tr><th>11:35</th><td>JX862 台北桃園一航起飛</td></tr><tr><th>16:00</th><td>抵達仙台機場，完成入境、領行李與網路確認<span class="drive-time">（搭 Access 線約 17–24 分：仙台空港站 → 仙台站）</span></td></tr><tr><th>17:15</th><td>仙台站西口出站，步行約 3–5 分到飯店辦入住</td></tr><tr><th>18:30</th><td>仙台站、百貨與周邊散步</td></tr><tr><th>19:00</th><td>晚餐：Kotora S-PAL Sendai（已訂位）</td></tr></tbody></table><div class="route-guide"><div><strong>機場到市區怎麼走</strong><br>國際線抵達大廳 → 穿過中央廣場 → 左前方電扶梯上 2 樓 → 走連通橋約 2–3 分鐘到仙台空港站。搭「仙台行」列車；快速約 17 分、普通約 24 分，依現場班次為準。</div><div><strong>仙台站到飯店怎麼走</strong><br>出仙台站西口後，面向大馬路往右側的 AER／Loft 方向走；Hotel Monterey Sendai 在青葉通與中央通一帶，約步行 3–5 分。先把行李放好，再輕鬆去 S-PAL 用餐。</div></div><p class="meta-note"><span>住宿：Hotel Monterey Sendai</span><span>提醒：列車月台與出口以現場指標為準</span></p><footer class="page-number">5</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 1 景點圖文</span><h2>從仙台機場走進車站城市</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/211028%20Sendai%20Airport%20Sendai%20Miyagi%20prefecture%20Japan01bs.jpg?width=1200" alt="仙台機場"><div><h3>仙台機場與 Access 線</h3><p>仙台機場是這趟東北旅程的入口。完成入境、領行李後，沿著 2 樓連通橋就能到仙台空港站。機場和火車站連在一起，像旅行第一條不必淋雨的空中走廊。</p><p class="spot-route"><strong>到了怎麼走：</strong>國際線抵達大廳 → 中央廣場 → 2 樓連通橋 → 仙台空港站；搭往仙台方向列車約 17–24 分。</p></div></article><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1200" alt="仙台站"><div><h3>仙台站與東口飯店</h3><p>仙台站把新幹線、JR、地下鐵、百貨和餐廳收在一起，是東北最忙碌的交通中心之一。先記住東口、西口，後面購物、吃晚餐和回機場時，就像已經認識這座城市的方向盤。</p><p class="spot-route"><strong>到了怎麼走：</strong>從東口依飯店指標走，Hotel Metropolitan Sendai East 與車站連通；先放行李，再到 S-PAL 周邊吃牛舌。</p></div></article></div><footer class="page-number">6</footer></section>
+
+  <section class="page day-page day-2"><div class="hero day"><div class="scene water"><span class="label">松島與猊鼻溪</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 2</strong><span>(7/26) Sun</span></div><h2>仙台 → 松島 → 猊鼻溪 → 盛岡</h2></div><table class="schedule"><tbody><tr><th>08:30</th><td>仙台辦理取車；確認 ETC 卡、導航、兒童座椅與油量<span class="drive-time">（開車約 45–60 分：仙台 → 松島中央觀光桟橋停車場）</span></td></tr><tr><th>10:00</th><td>松島仁王丸遊覽船（約 50 分）</td></tr><tr><th>10:50</th><td>五大堂、瑞巖寺外圍散步；午餐改成快速用餐或外帶<span class="drive-time">（開車約 1 小時 35 分：松島 → 猊鼻溪觀光中心）</span></td></tr><tr><th>14:00</th><td>猊鼻溪舟遊（來回約 90 分），聽船夫歌、走折返岸邊<span class="drive-time">（開車約 1 小時 45 分：猊鼻溪 → 盛岡站前飯店）</span></td></tr><tr><th>17:30</th><td>飯店入住、稍作休息；18:30 再去吃盛岡冷麵</td></tr></tbody></table><div class="route-guide"><div><strong>今天的關鍵：松島散步後立刻上路</strong><br>仁王丸 10:00 開船、約 10:50 回港。五大堂就在港邊，瑞巖寺這次以外圍散步為主；午餐請挑出餐快的店，或先買外帶上車吃，才能準時接上 14:00 猊鼻溪。</div><div><strong>兩段自駕怎麼抓時間</strong><br>松島 → 猊鼻溪約 96 公里，抓 1 小時 35 分較安心；猊鼻溪 → 盛岡再抓約 1 小時 45 分。遇到假日車潮、停車與洗手間，另加 10–15 分鐘緩衝。</div></div><p class="meta-note"><span>住宿：Richmond Hotel Morioka Ekimae</span><span>取車後總駕駛約 4 小時；建議兩位大人輪流開</span></p><footer class="page-number">7</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 2 景點圖文</span><h2>松島海灣與猊鼻溪的兩種水景</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/211030%20Godaido%20Zuigan-ji%20Matsushima%20Miyagi%20pref%20Japan05s3.jpg?width=1200" alt="松島五大堂"><div><h3>仁王丸、五大堂與瑞巖寺</h3><p>仁王丸從海上帶你看松島，許多小島像散在海上的綠色積木。五大堂通往小島的橋板有縫隙，走過時要慢慢看腳下；瑞巖寺則留下伊達家時代的寺院故事。海景、建築和歷史就在同一段步道裡。</p><p class="spot-route"><strong>到了怎麼走：</strong>停車後先到中央觀光桟橋確認船班；下船沿海邊步道走五大堂，再往瑞巖寺外圍。</p></div></article><article class="spot-entry"><img src="tohoku-brochure-assets/geibikei-boat-summer.png" alt="猊鼻溪舟遊"><div><h3>猊鼻溪舟遊</h3><p>猊鼻溪的船不是用馬達急衝，而是船夫用長竿慢慢撐。兩側石灰岩壁高高站著，水聲、鳥聲和船歌會讓速度自然慢下來。找找看岩壁的裂縫與顏色，想像河水花了多久才把山切成溪谷。</p><p class="spot-route"><strong>到了怎麼走：</strong>導航到げいび観光センター，提早 20 分鐘集合；舟程來回約 90 分鐘，結束後直接開往盛岡。</p></div></article></div><footer class="page-number">8</footer></section>
+
+  <section class="page day-page day-3"><div class="hero day"><div class="scene castle"><div class="castle-shape"></div><span class="label">小岩井 / 弘前</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 3</strong><span>(7/27) Mon</span></div><h2>盛岡 → 小岩井農場 → 弘前 → 青森</h2></div><table class="schedule"><tbody><tr><th>09:00</th><td>盛岡站前飯店出發<span class="drive-time">（開車約 30–35 分：盛岡 → 小岩井農場）</span></td></tr><tr><th>09:40</th><td>小岩井農場散步、看牛舍與草原；11:30 前往餐廳午餐<span class="drive-time">（開車約 1 小時 50 分：小岩井農場 → 弘前公園）</span></td></tr><tr><th>14:00</th><td>弘前公園：追手門 → 護城河 → 天守；夏季可走樹蔭路線<span class="drive-time">（開車約 55 分：弘前 → 青森市區飯店）</span></td></tr><tr><th>17:15</th><td>抵達青森飯店、辦入住；附近散步或休息</td></tr><tr><th>18:30</th><td>晚餐：青森港 海の食堂 大福丸（已預約）</td></tr></tbody></table><div class="route-guide"><div><strong>農場怎麼玩比較順</strong><br>停車後先拍園區導覽圖：牧場館、動物區、餐廳與出口各在哪裡。農場腹地大，先選一條主步道，不必追著每個設施跑；離開前記得在車上補水。</div><div><strong>弘前城步行路線</strong><br>導航「弘前公園 追手門」最容易辨識。由追手門進入 → 沿護城河到本丸／天守 → 從東門或原路回車。夏天樹蔭多，但仍要帶帽子與防蚊。</div></div><p class="meta-note"><span>住宿：ReLabo Medical Spa & Stay</span><span>移動：弘前 → 青森約 1 小時，留意飯店停車資訊</span></p><footer class="page-number">9</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 3 景點圖文</span><h2>草原、城堡與青森港的夏日</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Koiwai%20farm%20-%20panoramio%20%285%29.jpg?width=1200" alt="小岩井農場"><div><h3>小岩井農場</h3><p>小岩井農場的草地不是只為了拍照。牛吃牧草、牧草需要陽光與水，牛奶、起司和冰淇淋才會慢慢出現。走在農場裡時，找找遠方的岩手山、牛舍和不同顏色的草地，看看自然怎麼變成食物。</p><p class="spot-route"><strong>到了怎麼走：</strong>入口先拿園區圖，選牧場館、動物區和餐廳三個重點走；夏天記得帽子、防曬與水。</p></div></article><article class="spot-entry"><img src="tohoku-brochure-assets/hirosaki-castle-summer.png" alt="弘前城"><div><h3>弘前城與蘋果城市</h3><p>弘前城的天守不高，卻是東北少數保存下來的古城。護城河、石牆和彎曲入口都是以前保護城堡的方法。弘前也是蘋果重鎮，一份甜點背後要經過修枝、授粉、套袋和採收，好幾個季節才完成。</p><p class="spot-route"><strong>到了怎麼走：</strong>從追手門進弘前公園，沿護城河往天守；結束後回停車場開往青森港，18:30 到大福丸吃晚餐。</p></div></article></div><footer class="page-number">10</footer></section>
+
+  <section class="page day-page day-4"><div class="hero day"><div class="scene"><span class="label">八甲田 / 奧入瀨</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 4</strong><span>(7/28) Tue</span></div><h2>青森 → 八甲田 → 奧入瀨</h2></div><table class="schedule"><tbody><tr><th>09:00</th><td>睡魔之家 WA RASSE，看大型祭典燈籠與影片<span class="drive-time">（開車約 1 小時：青森市區 → 八甲田纜車）</span></td></tr><tr><th>11:00</th><td>八甲田纜車：排隊、上山、觀景與下山；風大停駛就改山麓散步</td></tr><tr><th>12:20</th><td>八甲田周邊午餐，出發前確認油量與山路天候<span class="drive-time">（開車約 1 小時 10 分：八甲田 → 奧入瀨銚子大瀑布）</span></td></tr><tr><th>14:15</th><td>奧入瀨溪流散步：銚子大瀑布周邊，走一段後回車</td></tr><tr><th>16:15</th><td>離開溪流前往十和田湖畔飯店<span class="drive-time">（開車約 30 分：奧入瀨 → 十和田湖畔櫻樂）</span></td></tr><tr><th>17:00</th><td>飯店入住、泡湯或湖畔散步；18:00 館內晚餐</td></tr></tbody></table><div class="route-guide"><div><strong>兩個景點如何接</strong><br>WA RASSE 就在青森站東側，停車後步行即可。離開青森市區後，導航「八甲田ロープウェー」；纜車是否運行看當日風雨，遇到停駛就改到山麓短散步與休息。</div><div><strong>奧入瀨下車怎麼走</strong><br>導航「銚子大滝」或飯店指定入口；把車停在合法停車區後再走溪邊步道。路面潮濕會滑，採「走一段、回頭取車」最適合第一天認識溪流。</div></div><p class="meta-note"><span>住宿：十和田湖畔櫻樂</span><span>提醒：山區天氣變化快，外套放車內最上層</span></p><footer class="page-number">11</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 4 景點圖文</span><h2>青森夏日祭典與八甲田高原</h2></div><div class="spot-list"><article class="spot-entry"><img src="tohoku-brochure-assets/nebuta-wa-rasse.png" alt="青森睡魔之家 WA RASSE 燈籠"><div><h3>睡魔之家 WA RASSE</h3><p>睡魔祭的巨大燈籠不是印出來的海報，而是先做鐵絲骨架，再貼和紙、上色、從裡面點燈。WA RASSE 把夏天夜晚才會上街的睡魔搬進館內，讓你白天也能靠近看它有多大、多亮、多有力量。</p><p class="spot-route"><strong>到了怎麼走：</strong>館就在青森站旁，先看大型睡魔，再到商店區找蘋果與祭典小物；別忘記觀察燈籠的表情和衣服細節。</p></div></article><article class="spot-entry"><img src="tohoku-brochure-assets/hakkoda-ropeway-summer.png" alt="八甲田纜車"><div><h3>八甲田纜車</h3><p>纜車把大家從山腳拉到高處，窗外的樹冠像一大片綠色地毯。夏天的八甲田沒有雪怪，只有潮濕森林、涼風和快速變化的雲。把手貼在玻璃旁，試著找出道路、山谷和遠方的湖。</p><p class="spot-route"><strong>到了怎麼走：</strong>出發前看風速與運行公告；停駛時改在山麓散步，不勉強上山。</p></div></article></div><footer class="page-number">12</footer></section><section class="page spot-page spot-single"><div class="spot-heading"><span>DAY 4 景點圖文</span><h2>奧入瀨：會流動的森林教室</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Oirase_keiryuu.JPG?width=1400" alt="奧入瀨溪流"><div><h3>奧入瀨溪流與銚子大瀑布</h3><p>奧入瀨的水從十和田湖流出，沿路穿過苔蘚、石頭、倒木和小瀑布。每一段水流速度不同：窄的地方變快，遇到落差就變成瀑布。這是一座不用黑板的自然教室，只要用眼睛和耳朵慢慢觀察。</p><p>夏天最有趣的是找三種不同的綠色：苔蘚的綠、樹葉的綠和水面反射出的綠。不要折植物，也不用撿石頭回家，讓它們繼續留在溪邊當下一位旅人的發現。</p><p class="spot-route"><strong>到了怎麼走：</strong>以銚子大瀑布附近為起點最容易辨識；車停合法停車區後走步道，石頭潮濕時不要靠水邊。</p></div></article></div><footer class="page-number">13</footer></section>
+
+  <section class="page day-page day-5"><div class="hero day"><div class="scene onsen"><span class="label">十和田湖 / 銀山</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 5</strong><span>(7/29) Wed</span></div><h2>奧入瀨 → 十和田湖 → 銀山溫泉</h2></div><table class="schedule"><tbody><tr><th>08:45</th><td>退房後走奧入瀨溪流未完成路段，控制在 60–75 分鐘<span class="drive-time">（開車約 30 分：奧入瀨 → 十和田湖休屋碼頭）</span></td></tr><tr><th>10:45</th><td>抵十和田湖畔、停車與確認遊覽船班次</td></tr><tr><th>11:00</th><td>十和田湖遊覽船，欣賞湖面與山景</td></tr><tr><th>12:00</th><td>湖畔午餐：十和田烤牛五花或在地料理<span class="drive-time">（開車約 5 小時：十和田湖 → 銀山溫泉停車／接駁區；含 2 次休息）</span></td></tr><tr><th>18:00</th><td>抵銀山溫泉，依旅館指示停車或接駁、辦理入住</td></tr><tr><th>19:00</th><td>能登屋旅館晚餐</td></tr></tbody></table><div class="route-guide"><div><strong>湖畔到碼頭</strong><br>先導航「十和田湖遊覧船 休屋」並在出發前確認班次與是否受天候影響。碼頭、商店與餐廳集中，船前後都能在湖畔走一小段，不要把午餐排得太趕。</div><div><strong>銀山溫泉進場方式</strong><br>長車程請把休息站寫進導航：途中至少一次加油、一次讓大家下車伸展。接近銀山後依旅館通知使用停車場或接駁；溫泉街部分路段不適合直接開進去。</div></div><p class="meta-note"><span>住宿：能登屋旅館</span><span>今天最長車程，晚餐與入住時間需先和旅館確認</span></p><footer class="page-number">14</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 5 景點圖文</span><h2>湖水、溪流與火山留下的形狀</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Oirase_keiryuu.JPG?width=1200" alt="奧入瀨夏季溪流"><div><h3>奧入瀨晨間散步</h3><p>早上的奧入瀨比下午安靜，適合補走前一天沒走完的路。看一看同一條溪在陽光和樹蔭下顏色怎麼變；水不是只有透明，它會把天空、樹葉和石頭的顏色一起帶走。</p><p class="spot-route"><strong>到了怎麼走：</strong>退房前只挑一小段走，留出回車、上洗手間與開往碼頭的時間。</p></div></article><article class="spot-entry"><img src="tohoku-brochure-assets/towada-cruise.png" alt="十和田湖遊覽船"><div><h3>十和田湖遊覽船</h3><p>十和田湖位在火山活動形成的大凹地裡，從船上看起來像被群山抱住的一面大鏡子。近岸的水色和湖中央不同，因為水深、光線和天空反射都在改變。把這趟船當成認識火山湖的慢速課。</p><p class="spot-route"><strong>到了怎麼走：</strong>到休屋碼頭先確認班次；船前後在湖畔吃午餐，不要壓縮下午長途車程。</p></div></article></div><footer class="page-number">15</footer></section><section class="page spot-page spot-single"><div class="spot-heading"><span>DAY 5 景點圖文</span><h2>銀山溫泉：山裡的舊時光</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89_Ginzan_Onsen_%287809473788%29.jpg?width=1400" alt="銀山溫泉街"><div><h3>木造旅館、橋與河道</h3><p>銀山溫泉的名字來自以前的銀礦。礦山慢慢淡出後，木造旅館、河道和溫泉留下來，變成今天的溫泉街。傍晚燈亮起來時，屋簷和橋像老電影場景；白天則最適合看清木頭、窗框和河水的細節。</p><p>試著選一棟旅館觀察：它有幾層窗？河水往哪一邊流？橋為什麼要蓋在這裡？這些小問題能把一張漂亮照片變成你真的記得的地方。</p><p class="spot-route"><strong>到了怎麼走：</strong>車子依旅館指示停在外圍停車區或搭接駁，進溫泉街後用走的；晚上小聲走路，尊重住宿旅客。</p></div></article></div><footer class="page-number">16</footer></section>
+
+  <section class="page day-page day-6"><div class="hero day"><div class="scene onsen"><span class="label">銀山慢活</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 6</strong><span>(7/30) Thu</span></div><h2>銀山溫泉慢活 → 藏王附近</h2></div><table class="schedule"><tbody><tr><th>09:00</th><td>銀山溫泉老街晨間散步：河道、白銀橋、木造旅館</td></tr><tr><th>10:30</th><td>退房；溫泉街午餐或外帶上車<span class="drive-time">（開車約 2 小時 15 分：銀山溫泉 → 藏王溫泉季の里）</span></td></tr><tr><th>13:15</th><td>沿途休息站補水、加油，進入藏王山路</td></tr><tr><th>15:00</th><td>抵達季の里辦理入住；確認隔日御釜道路與天氣</td></tr><tr><th>16:00</th><td>溫泉街小散步或旅館泡湯，保留體力</td></tr><tr><th>18:30</th><td>旅館內晚餐，早點休息</td></tr></tbody></table><div class="route-guide"><div><strong>銀山早晨散步</strong><br>先寄放行李或確認退房時間，再沿河道由旅館街走到白銀橋一帶；早上人較少，適合慢慢看橋、屋簷、河流。拍照要留出行人通道，不站在車道中央。</div><div><strong>到藏王前的準備</strong><br>導航「蔵王温泉 季の里」；山路前把油加滿、暈車藥與薄外套拿到手邊。到飯店先詢問隔天御釜道路與接駁／自駕狀況，天候不好要有替代計畫。</div></div><p class="meta-note"><span>住宿：蔵王温泉 岩清水料理の宿 季の里</span><span>移動：約 2 小時；山區早晚溫差較市區大</span></p><footer class="page-number">17</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 6 景點圖文</span><h2>慢慢看銀山，再走進藏王溫泉</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/%E9%8A%80%E5%B1%B1%E6%B8%A9%E6%B3%89_Ginzan_Onsen_%287809473788%29.jpg?width=1200" alt="銀山溫泉白天"><div><h3>銀山溫泉的白天表情</h3><p>晚上看燈，白天看結構。你可以數數一棟旅館有幾層窗、橋下的水流往哪裡去，還能找出老街為什麼把路留得窄窄的。這裡不是大型購物街，慢下來才會看到它真正的樣子。</p><p class="spot-route"><strong>到了怎麼走：</strong>退房後沿河散步到白銀橋一帶，再回停車或接駁處；行李先放好，街道才好走。</p></div></article><article class="spot-entry"><img src="tohoku-brochure-assets/zao-onsen-gate.png" alt="藏王溫泉夏景"><div><h3>藏王溫泉</h3><p>藏王的地下仍有地熱，雨水滲進地底被加熱、帶著礦物質再湧出，就成了溫泉。今天泡湯和明天看御釜其實是一套地球故事：一個在地底的熱，一個是火山口留下的湖。</p><p class="spot-route"><strong>到了怎麼走：</strong>進山前先加油、準備外套與暈車藥；到旅館後確認隔天道路與天候。</p></div></article></div><footer class="page-number">18</footer></section>
+
+  <section class="page day-page day-7"><div class="hero day"><div class="scene"><span class="label">藏王 / 狐狸村</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 7</strong><span>(7/31) Fri</span></div><h2>藏王 → 狐狸村 → 仙台</h2></div><table class="schedule"><tbody><tr><th>08:30</th><td>由藏王溫泉出發，上 Eco Line 往御釜</td></tr><tr><th>09:30</th><td>御釜火口湖觀景、拍照與步道短走</td></tr><tr><th>10:45</th><td>下山前往白石方向用午餐<span class="drive-time">（開車約 1 小時 20 分：御釜 → 宮城藏王狐狸村）</span></td></tr><tr><th>12:30</th><td>白石周邊午餐：白石溫麵或簡餐</td></tr><tr><th>13:30</th><td>宮城藏王狐狸村，依園方規則觀察狐狸<span class="drive-time">（開車約 1 小時 30 分：狐狸村 → 仙台站東口）</span></td></tr><tr><th>16:30</th><td>抵仙台飯店入住、還車前確認油量與租車分店</td></tr><tr><th>19:00</th><td>晚餐：牛たん料理 閣 名掛丁店（已預約）</td></tr></tbody></table><p class="meta-note"><span>住宿：Hotel Metropolitan Sendai East</span><span>提醒：御釜備案與狐狸村關園時間都要當日確認</span></p><footer class="page-number">19</footer></section>
+  <section class="page spot-page"><div class="spot-heading"><span>DAY 7 景點圖文</span><h2>藏王御釜與狐狸村</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Okama%20crater%20lake%2C%20Mt.%20Zao%2C%20Tohoku%20region%2C%20Japan%20%28north%20facing%20view%29.jpg?width=1200" alt="藏王御釜"><div><h3>御釜火口湖</h3><p>御釜的名字像煮飯的鍋，因為它在火山口裡圓圓地裝著湖水。湖色有時像綠松石，有時被雲霧遮住，這不是它在變魔術，而是光線、天氣和水中成分一起造成的效果。</p><p class="spot-route"><strong>到了怎麼走：</strong>上 Eco Line 前查道路與能見度；山頂風大時不要靠近邊緣，濃霧就改走備案。</p></div></article><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Zao%20Fox%20Village%2C%20Shiroishi-shi%2C%20Japan%20%28Unsplash%29.jpg?width=1200" alt="宮城藏王狐狸村"><div><h3>宮城藏王狐狸村</h3><p>狐狸有尖耳朵、蓬鬆尾巴和很快的警覺反應，但牠們不是玩偶。最棒的觀察方式是安靜站著，看牠用鼻子聞、耳朵轉、尾巴擺，猜猜牠是在找食物、休息，還是在注意同伴。</p><p class="spot-route"><strong>到了怎麼走：</strong>先讀園方規則；不追逐、不伸手摸、不把食物靠近臉，保持距離就是喜歡牠們的方式。</p></div></article></div><footer class="page-number">20</footer></section><section class="page spot-page spot-single"><div class="spot-heading"><span>DAY 7 景點圖文</span><h2>回到仙台：把旅行收進城市裡</h2></div><div class="spot-list"><article class="spot-entry"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sendai_Station_20230806.jpg?width=1400" alt="仙台站東口"><div><h3>仙台站東口與名掛丁</h3><p>從山上的御釜、狐狸村回到仙台站，會很明顯感到旅行的節奏變快：車、火車、百貨與人群都集中在一起。把租車油量、行李和晚餐地點先排好，最後一晚就能從容享受牛舌。</p><p>名掛丁商店街靠近仙台站，是晚餐前可以慢慢散步的地方。抬頭看招牌、聽店門口的招呼聲，想想同一座城市白天和晚上怎麼換了表情。</p><p class="spot-route"><strong>到了怎麼走：</strong>入住 Hotel Metropolitan Sendai East 後，走車站連通區到名掛丁；19:00 前抵達牛たん料理 閣 名掛丁店。</p></div></article></div><footer class="page-number">21</footer></section>
+
+  <section class="page day-page day-8"><div class="hero day"><div class="scene water"><span class="label">回程日</span></div></div><div class="bar blue"></div><div class="day-heading"><div class="day-badge"><strong>Day 8</strong><span>(8/1) Sat</span></div><h2>仙台 → 機場 / 返回台灣</h2></div><table class="schedule"><tbody><tr><th>09:00</th><td>照下一頁「仙台車站購物地圖」分區採買；角色商品先買</td></tr><tr><th>11:45</th><td>仙台站周邊午餐：牛舌、車站便當或毛豆泥甜點</td></tr><tr><th>12:45</th><td>回飯店取行李、最後整理購物袋</td></tr><tr><th>13:30</th><td>開車前往仙台機場租車店還車<span class="drive-time">（開車約 35–45 分：仙台站 → 仙台空港租車店；還車接駁另抓 15–20 分）</span></td></tr><tr><th>14:30</th><td>抵航廈辦理報到、托運與出境；最後採買放在安檢後</td></tr><tr><th>17:20</th><td>JX863 仙台起飛，20:10 抵達台北桃園一航</td></tr></tbody></table><div class="route-guide"><div><strong>車站到機場怎麼走</strong><br>請依租車公司指定的仙台空港分店導航；抵店後先加滿油、拍照記錄車況、完成還車，再搭店家接駁車進航廈。車程不含還車與接駁，至少預留 20 分鐘。</div><div><strong>國際線報到順序</strong><br>先確認航班看板 → 航空公司櫃檯報到／托運 → 安檢與出境。把護照、登機證、行動電源留在隨身包。若有租車，還車時間不算進火車時間，務必另留緩衝。</div></div><p class="meta-note"><span>回台灣：JX863 17:20 起飛</span><span>建議：13:30 從仙台站出發，保留還車與機場流程時間</span></p><footer class="page-number">22</footer></section>
+  <section class="page shopping-page">
+  <h2>仙台車站購物平面圖</h2>
+  <p class="sub">相對位置示意，北向上；先由住宿出發，最後回仙台站東口取車前往機場。</p>
+  <div class="flat-map">
+    <div class="map-title-strip">建議路線：飯店 → PARCO → 三越 → 仙台站 → Yodobashi → 飯店取行李</div>
+    <div class="map-road main"></div><div class="map-road west"></div><div class="map-road east"></div><div class="map-road mall"></div><div class="map-rail"></div>
+    <div class="map-route route-a"></div><div class="map-route route-b"></div><div class="map-route route-c"></div>
+    <div class="plan-place parco"><strong>仙台 PARCO 1</strong>西口步行約 2 分<br>8F：吉伊卡哇、mofusand</div>
+    <div class="plan-place yodobashi"><strong>Yodobashi 仙台</strong>東口步行約 1 分<br>電器、松本清藥妝</div>
+    <div class="plan-place station"><strong>仙台站</strong>西口：PARCO、三越<br>東口：飯店、Yodobashi</div>
+    <div class="plan-place hotel"><strong>住宿</strong>Hotel Metropolitan<br>Sendai East（東口側）</div>
+    <div class="plan-place spal"><strong>S-PAL 仙台</strong>伴手禮、便當、甜點<br>冷藏品最後買</div>
+    <div class="plan-place mitsukoshi"><strong>仙台三越</strong>商店街步行 15–20 分<br>TASAKI／MIKIMOTO</div>
+    <div class="map-note"><strong>回機場：</strong>飯店取行李 → 租車店還車 → 接駁進航廈。</div>
+  </div>
+  <div class="map-legend"><div><strong>走路採買順序</strong><br>PARCO 的角色商品先買，再走到三越看珠寶；回車站時剛好把購物袋放回飯店。</div><div><strong>東口最後一站</strong><br>Yodobashi 買電器與松本清藥妝，距離飯店與車站最近，最後採買最省力。</div></div>
+  <footer class="page-number">23</footer>
+</section>
+  </main>
+</body>
+</html>
+
