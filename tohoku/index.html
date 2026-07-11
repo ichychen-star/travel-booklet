@@ -321,6 +321,54 @@ ul { margin: 0; padding: 0; list-style: none; }
 .day-link b { font-size: 17pt !important; }
 .day-link span em { margin-right: 2.2mm; }
 .day-link span i { color: #8a8175; font-size: 14pt !important; font-style: normal; font-weight: 700; }
+
+/* Phone reading mode: retain the print layout above, but let pages reflow comfortably on narrow screens. */
+@media screen and (max-width: 720px) {
+  html { scroll-behavior: smooth; }
+  body { background: #fff; }
+  .booklet { display: block; padding: 0; }
+  .page { width: 100%; height: auto; min-height: 100svh; overflow: visible; margin: 0 0 12px; box-shadow: none; break-after: auto; }
+  .page-number { position: static; display: block; margin: 12px 16px 0; text-align: right; }
+  .cover { min-height: 100svh; }
+  .cover img { min-height: 100svh; object-fit: cover; }
+  .image-map { min-height: auto; padding: 10px 0; }
+  .route-map-image { width: 100%; height: auto; object-fit: contain; }
+
+  .overview { padding: 20px 16px 24px; }
+  .overview-title { padding-left: 12px; }
+  .overview-title h2 { font-size: 25pt !important; }
+  .day-link { grid-template-columns: 25mm 1fr; min-height: 0; }
+  .day-link div { padding: 10px 16px 11px; }
+  .overview-tip { grid-template-columns: 1fr; gap: 4px; padding: 12px; }
+
+  .prep { padding: 0 0 20px; }
+  .prep .hero.small { height: 48vw; min-height: 190px; }
+  .prep .badge { position: static; display: inline-block; margin: -24px 16px 12px; font-size: 21pt; }
+  .prep .info-grid { position: static; left: auto; right: auto; min-height: 0; margin: 12px 12px 0; grid-template-columns: 15mm 1fr; }
+  .prep .checklist-block, .prep .flight-block { top: auto; }
+  .prep .checklists { grid-column: 2; grid-template-columns: 1fr; gap: 8px; padding: 12px; }
+  .prep .flight-card { grid-column: 2; padding: 12px; }
+
+  .day-page { padding: 0 16px 24px; }
+  .day-page .hero.day { height: 54vw !important; min-height: 200px; max-height: 300px; margin: 0 -16px; }
+  .day-heading { grid-template-columns: 28mm 1fr; gap: 10px; margin: 20px 0 12px; }
+  .page.day-page .day-heading h2 { font-size: 20pt !important; }
+  .day-page .schedule tbody { gap: 8px; }
+  .day-page .schedule tr { grid-template-columns: 22mm 1fr; min-height: 0; padding: 9px 0 9px 16px; }
+  .day-page .schedule tr:before { top: 15px; }
+  .day-page .route-guide { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
+  .day-page .meta-note { position: static; display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 14px; }
+  .day-page .meta-note span { display: block; }
+
+  .spot-page, .landscape-spot { padding: 20px 16px 24px; }
+  .landscape-spot .spot-entry img { height: 64vw; min-height: 0; max-height: 420px; }
+  .landscape-spot .spot-entry > div { padding: 16px; }
+  .spot-heading h2 { font-size: 21pt; }
+
+  .shopping-page { padding: 20px 16px 24px; }
+  .shopping-page .flat-map { height: 130vw; min-height: 430px; }
+  .shopping-page .map-legend { grid-template-columns: 1fr; gap: 10px; }
+}
 </style>
 </head>
 <body>
